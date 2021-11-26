@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-router.use('/video', require('./video'));
+router.get('', require('./allVideosGET'));
 
 module.exports = router;
