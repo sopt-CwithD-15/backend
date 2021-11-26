@@ -15,6 +15,21 @@ const getAllVideos = async (client) => {
     return convertSnakeToCamel.keysToCamel(rows);
 }
 
+// 비디오 상세 페이지 조회
+const getVideoById = async (client, videoId) => {
+  const { rows } = await client.query(
+    `
+      SELECT v.video_id, v.title, v.tags, v.view_count, v.created_at, v.runtime, v.thumbnail, v.is_hot, v.is_like, v.is_dislike, v.like_count, v.dislike_count,
+      u.user_iD, u.nickname, u.profile_image FROM "video" v
+      JOIN "user" u ON v.user_id = u.user_id
+      WHERE v.video_id = $1
+        AND v.is_deleted = FALSE
+      `,
+    [videoId]
+  );
+  return convertSnakeToCamel.keysToCamel(rows[0]);
+};
+
 const postVideoLike = async (client, videoId) => {
     const { rows } = await client.query(
         `

@@ -36,6 +36,10 @@ module.exports = {
     CANCEL_LIKE_VIDEO_SUCCESS: '동영상 좋아요 취소 성공',
     DISLIKE_VIDEO_SUCCESS: '동영상 싫어요 성공',
     CANCEL_DISLIKE_VIDEO_SUCCESS: '동영상 싫어요 취소 성공',
+
+    // 댓글
+    ADD_COMMENT_SUCCESS: '댓글 추가 성공',
+
     // 서버 내 오류
     INTERNAL_SERVER_ERROR: '서버 내 오류',
   
