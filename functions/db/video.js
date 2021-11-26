@@ -16,7 +16,7 @@ const getAllVideos = async (client) => {
 }
 
 // 비디오 상세 페이지 조회
-const getVideoById = async (client, videoId) => {
+const getOneVideo = async (client, videoId) => {
   const { rows } = await client.query(
     `
       SELECT v.video_id, v.title, v.tags, v.view_count, v.created_at, v.runtime, v.thumbnail, v.is_hot, v.is_like, v.is_dislike, v.like_count, v.dislike_count,
@@ -70,6 +70,6 @@ const postVideoDislike = async (client, videoId) => {
     return convertSnakeToCamel.keysToCamel(rows[0]);
 }
 
-module.exports = { getAllVideos, postVideoLike, postVideoDislike};
+module.exports = { getAllVideos, getOneVideo, postVideoLike, postVideoDislike};
 
 
