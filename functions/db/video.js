@@ -34,8 +34,27 @@ const postVideoLike = async (client, videoId) => {
     )
     return convertSnakeToCamel.keysToCamel(rows[0]);
 }
-module.exports = { getAllVideos, postVideoLike };
 
-// like_count = CASE
-// WHEN is_like = true THEN like_count - 1
-// ELSE like_count + 1
+const postVideoDislike = async (client, videoId) => {
+    const { rows } = await client.query(
+        `
+        UPDATE video
+        SET is_dislike = CASE is_dislike
+            WHEN true THEN false
+            ELSE true
+        END,
+        dislike_count = CASE is_dislike
+        WHEN true THEN dislike_count - 1
+        ELSE dislike_count + 1
+        END
+        WHERE video_id = $1
+        RETURNING dislike_count, is_dislike
+        `,
+        [videoId]
+    )
+    return convertSnakeToCamel.keysToCamel(rows[0]);
+}
+
+module.exports = { getAllVideos, postVideoLike, postVideoDislike};
+
+
