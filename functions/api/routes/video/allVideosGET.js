@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
             viewCount: video.viewCount,
             createdAt: video.createdAt,
             author: {
-                userID: video.userID,
+                userID: video.userId,
                 nickname: video.nickname,
                 profileImage: video.profileImage
             },
