@@ -32,7 +32,10 @@ module.exports = {
   
     // 비디오
     READ_ALL_VIDEOS_SUCCESS: '전체 동영상 조회 성공',
-    
+    LIKE_VIDEO_SUCCESS: '동영상 좋아요 성공',
+    CANCEL_LIKE_VIDEO_SUCCESS: '동영상 좋아요 취소 성공',
+    DISLIKE_VIDEO_SUCCESS: '동영상 싫어요 성공',
+    CANCEL_DISLIKE_VIDEO_SUCCESS: '동영상 싫어요 취소 성공',
     // 서버 내 오류
     INTERNAL_SERVER_ERROR: '서버 내 오류',
   
