@@ -18,13 +18,13 @@ module.exports = async (req, res) => {
 
     const tags = video.tags.split('#');
     video = {
-      videoID: video.videoId,
+      videoId: video.videoId,
       title: video.title,
       tags,
       viewCount: video.viewCount,
       createdAt: video.createdAt,
       author: {
-        userID: video.userId,
+        userId: video.userId,
         nickname: video.nickname,
         profileImage: video.profileImage,
       },
@@ -40,9 +40,9 @@ module.exports = async (req, res) => {
 
     comments = comments.map((comment) => {
       return {
-        commentID: comment.commentId,
+        commentId: comment.commentId,
         commenter: {
-          userID: comment.userId,
+          userId: comment.userId,
           nickname: comment.nickname,
           profileImage: comment.profileImage
         },

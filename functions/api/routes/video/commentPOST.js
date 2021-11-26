@@ -27,9 +27,9 @@ module.exports = async (req, res) => {
     );
 
     const data = {
-      commentID: comment.commentID,
+      commentId: comment.commentID,
       commenter: {
-        userID: comment.userID,
+        userId: comment.userID,
         nickname: comment.nickname,
         profileImage: comment.profileImage
       },
