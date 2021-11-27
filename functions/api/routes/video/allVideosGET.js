@@ -15,7 +15,6 @@ module.exports = async (req, res) => {
 
     let videos = await videoDB.getAllVideos(client);
 
-    console.log(videos[0]);
     videos = videos.map((video) => {
         return {
             videoId: video.videoId,

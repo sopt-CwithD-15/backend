@@ -15,6 +15,20 @@ const getAllVideos = async (client) => {
     return convertSnakeToCamel.keysToCamel(rows);
 }
 
+const getRecommendedVideos = async (client, videoId) => {
+    const { rows } = await client.query(
+        `
+        SELECT *, v.created_at AS created_at
+        FROM "video" v
+        INNER JOIN "user" u ON v.user_id = u.user_id
+        WHERE v.is_deleted = false
+            AND u.is_deleted = false
+            AND v.video_id != $1
+        `,
+        [videoId]
+    )
+    return convertSnakeToCamel.keysToCamel(rows);
+}
 // 비디오 상세 페이지 조회
 const getOneVideo = async (client, videoId) => {
   const { rows } = await client.query(
@@ -70,6 +84,6 @@ const postVideoDislike = async (client, videoId) => {
     return convertSnakeToCamel.keysToCamel(rows[0]);
 }
 
-module.exports = { getAllVideos, getOneVideo, postVideoLike, postVideoDislike};
+module.exports = { getAllVideos, getOneVideo, postVideoLike, postVideoDislike, getRecommendedVideos };
 
 

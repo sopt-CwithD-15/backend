@@ -50,11 +50,32 @@ module.exports = async (req, res) => {
         content: comment.content
       }
     });
-  
+
+    let recommended = await videoDB.getRecommendedVideos(client,videoId);
+
+    recommended = recommended.map((video) => {
+        return {
+            videoId: video.videoId,
+            title: video.title,
+            viewCount: video.viewCount,
+            createdAt: video.createdAt,
+            author: {
+                userId: video.userId,
+                nickname: video.nickname,
+                profileImage: video.profileImage
+            },
+            description: video.description,
+            runtime: video.runtime,
+            thumbnail: video.thumbnail,
+            isHot: video.isHot,
+        }
+    });
+
     res.status(statusCode.OK).send(
       util.success(statusCode.OK, responseMessage.READ_ONE_VIDEOS_SUCCESS, {
         video,
         comments,
+        recommended
       })
     );
   } catch (error) {
