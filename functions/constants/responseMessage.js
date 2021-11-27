@@ -40,6 +40,8 @@ module.exports = {
 
     // 댓글
     ADD_COMMENT_SUCCESS: '댓글 추가 성공',
+    DELTE_COMMENT_SUCCESS: '댓글 삭제 성공',
+    NO_COMMENT: '존재하지 않는 댓글입니다',
 
     // 서버 내 오류
     INTERNAL_SERVER_ERROR: '서버 내 오류',

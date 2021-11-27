@@ -44,8 +44,22 @@ const getCommentByCommentId = async (client, commentId) => {
   return convertSnakeToCamel.keysToCamel(rows[0]);
 };
 
+const deleteCommentByCommentId = async (client, commentId) => {
+    const { rows } = await client.query(
+        `
+        UPDATE comment
+        SET is_deleted = true
+        WHERE comment_id = $1
+        RETURNING comment_id, is_deleted
+        `,
+        [commentId]
+    );
+    
+    return convertSnakeToCamel.keysToCamel(rows);
+}
 module.exports = {
   postVideoComment,
   getCommentsByVideoId,
   getCommentByCommentId,
+  deleteCommentByCommentId
 };
