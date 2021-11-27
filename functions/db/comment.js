@@ -17,12 +17,13 @@ const postVideoComment = async (client, videoId, userId, content) => {
 const getCommentsByVideoId = async (client, videoId) => {
   const { rows } = await client.query(
     `
-      SELECT *, c.created_at AS created_at
-      FROM "comment" c
-      INNER JOIN "user" u ON c.user_id = u.user_id
-      WHERE video_id = $1
-          AND c.is_deleted = FALSE
-          AND u.is_deleted = false
+    SELECT *, c.created_at AS created_at
+    FROM "comment" c
+    INNER JOIN "user" u ON c.user_id = u.user_id
+    WHERE video_id = $1
+        AND c.is_deleted = FALSE
+        AND u.is_deleted = false
+    ORDER BY c.created_at DESC
       `,
     [videoId]
   );
