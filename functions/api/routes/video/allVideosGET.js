@@ -18,12 +18,12 @@ module.exports = async (req, res) => {
     console.log(videos[0]);
     videos = videos.map((video) => {
         return {
-            videoID: video.videoId,
+            videoId: video.videoId,
             title: video.title,
             viewCount: video.viewCount,
             createdAt: video.createdAt,
             author: {
-                userID: video.userId,
+                userId: video.userId,
                 nickname: video.nickname,
                 profileImage: video.profileImage
             },
